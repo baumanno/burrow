@@ -24,9 +24,10 @@ func run() error {
 	defer conn.Close()
 
 	fmt.Fprint(conn, "\r\n")
-	connreader := bufio.NewReader(conn)
-	status, err := connreader.ReadString('\n')
-	fmt.Println(status)
+	scanner := bufio.NewScanner(conn)
+	for scanner.Scan() {
+		fmt.Println(scanner.Text())
+	}
 
 	return nil
 }

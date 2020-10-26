@@ -1,3 +1,3 @@
-module github.com/baumanno/gopher
+module github.com/baumanno/burrow
 
 go 1.15

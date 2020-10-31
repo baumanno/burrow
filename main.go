@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"net"
 	"os"
+
+	"github.com/baumanno/burrow/parser"
 )
 
 func main() {
@@ -26,7 +28,9 @@ func run() error {
 	fmt.Fprint(conn, "\r\n")
 	scanner := bufio.NewScanner(conn)
 	for scanner.Scan() {
-		fmt.Println(scanner.Text())
+		p := parser.New(scanner.Text())
+		l := p.NextLine()
+		fmt.Printf("%+v\n", l)
 	}
 
 	return nil
